@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { getProjects } from "@/app/actions";
 import ProjectsCarousel from "./ProjectsCarousel";
+import Image from "next/image";
 
 interface Project {
     title: string;
@@ -26,10 +27,12 @@ function DesktopCard({ project, index }: { project: Project; index: number }) {
             style={{ animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both` }}
         >
             <div className="relative h-56 w-full overflow-hidden">
-                <img
+                <Image
                     src={project.imageUrl || "/jyotish.png"}
                     alt={project.title}
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/30 to-transparent" />
                 <div className="absolute top-3 left-3">

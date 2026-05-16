@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { PhoneCall, Code2, Users, Star } from "lucide-react";
 
 export default function AboutMeClient({ phone }: { phone: string }) {
@@ -22,10 +23,13 @@ export default function AboutMeClient({ phone }: { phone: string }) {
                     >
                         <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden glass p-1.5 shadow-[0_0_40px_rgba(59,130,246,0.3)] group">
                             <div className="w-full h-full relative rounded-2xl overflow-hidden bg-gray-900 border border-white/10">
-                                <img
+                                <Image
                                     src="/deepak_photo.jpg"
                                     alt="Deepak Bishnoi"
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 384px"
+                                    priority
                                 />
                             </div>
                         </div>

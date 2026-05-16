@@ -2,6 +2,7 @@
 
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface FooterProps {
     pages?: { slug: string; title: string }[];
@@ -15,7 +16,13 @@ export default function Footer({ pages = [] }: FooterProps) {
                     <div className="col-span-1 lg:col-span-2">
                         <Link href="/" className="flex items-center gap-2 mb-6 cursor-pointer inline-flex group">
                             <div className="relative w-12 h-12 rounded-full overflow-hidden border border-white/10 group-hover:scale-105 transition-transform shadow-[0_0_15px_rgba(168,85,247,0.4)] bg-black">
-                                <img src="/dnet-studio-logo.webp" alt="DNet Studio Logo" className="w-full h-full object-cover" />
+                                <Image
+                                    src="/dnet-studio-logo.webp"
+                                    alt="DNet Studio Logo"
+                                    width={48}
+                                    height={48}
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                             <span className="text-2xl font-bold tracking-tight text-white group-hover:text-purple-400 transition-colors">
                                 DNet Studio

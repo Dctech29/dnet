@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Image from "next/image";
 import { Trash2, Plus, Star, Loader2, CheckCircle2, AlertCircle, X } from "lucide-react";
 import { addTestimonial, deleteTestimonial } from "@/app/actions";
 
@@ -38,14 +39,28 @@ function TestimonialRow({ t, onDeleted }: { t: Testimonial; onDeleted: (id: stri
     return (
         <div className={`flex gap-4 items-start bg-white/5 border rounded-2xl p-5 transition-all ${confirm ? "border-red-500/40 bg-red-500/5" : "border-white/10"}`}>
             {/* Site thumbnail */}
-            <img src={t.siteImage || "https://picsum.photos/seed/default/200/150"} alt={t.projectName}
-                className="w-20 h-14 object-cover rounded-lg flex-shrink-0 border border-white/10" />
+            <div className="w-20 h-14 relative flex-shrink-0 rounded-lg overflow-hidden border border-white/10">
+                <Image
+                    src={t.siteImage || "https://picsum.photos/seed/default/200/150"}
+                    alt={t.projectName}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                />
+            </div>
 
             {/* Info */}
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <img src={t.personImage || "https://i.pravatar.cc/150?img=1"} alt={t.personName}
-                        className="w-7 h-7 rounded-full border border-white/10 object-cover" />
+                    <div className="w-7 h-7 relative rounded-full border border-white/10 overflow-hidden">
+                        <Image
+                            src={t.personImage || "https://i.pravatar.cc/150?img=1"}
+                            alt={t.personName}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                        />
+                    </div>
                     <span className="text-white font-semibold text-sm">{t.personName}</span>
                     <span className="text-gray-500 text-xs">•</span>
                     <span className="text-purple-400 text-xs font-medium">{t.projectName}</span>

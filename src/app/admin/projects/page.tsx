@@ -1,5 +1,6 @@
 import { getProjects, addProject, deleteProject } from "@/app/actions";
 import { Trash2, Plus } from "lucide-react";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -64,7 +65,13 @@ export default async function AdminProjectsPage() {
                         projects.map((project) => (
                             <div key={project.id} className="bg-white/5 border border-white/10 rounded-2xl p-4 flex flex-col sm:flex-row gap-4 items-center">
                                 <div className="w-32 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gray-900 border border-white/10 relative">
-                                    <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
+                                    <Image
+                                        src={project.imageUrl}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="128px"
+                                    />
                                 </div>
                                 <div className="flex-grow min-w-0 text-center sm:text-left">
                                     <h4 className="font-bold text-lg text-white truncate">{project.title}</h4>

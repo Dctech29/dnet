@@ -1,5 +1,6 @@
 import { getTechnologies, addTechnology, deleteTechnology } from "@/app/actions";
 import { Trash2, Plus } from "lucide-react";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -74,9 +75,14 @@ export default async function AdminTechnologiesPage() {
                     ) : (
                         technologies.map((tech: { id: string; name: string; iconUrl: string; order: number; }) => (
                             <div key={tech.id} className="bg-white/5 border border-white/10 rounded-2xl p-4 flex gap-4 items-center hover:bg-white/10 transition-colors">
-                                <div className="w-16 h-16 flex-shrink-0 rounded-xl bg-black/50 border border-white/10 flex items-center justify-center p-3">
-                                    {/* Using standard img to bypass Next.js image domain restrictions for external icons */}
-                                    <img src={tech.iconUrl} alt={tech.name} className="max-w-full max-h-full object-contain" />
+                                <div className="w-16 h-16 flex-shrink-0 rounded-xl bg-black/50 border border-white/10 flex items-center justify-center p-3 relative">
+                                    <Image
+                                        src={tech.iconUrl}
+                                        alt={tech.name}
+                                        fill
+                                        className="object-contain p-3"
+                                        unoptimized
+                                    />
                                 </div>
                                 <div className="flex-grow min-w-0">
                                     <h4 className="font-bold text-lg text-white truncate">{tech.name}</h4>

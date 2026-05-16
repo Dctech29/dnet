@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type Technology = {
     id: string;
@@ -49,10 +50,12 @@ export default function TechStackClient({ technologies }: { technologies: Techno
                         >
                             <div className="bg-background/90 h-full w-full rounded-xl p-6 flex flex-col items-center text-center gap-4">
                                 <div className="mb-2">
-                                    <img
+                                    <Image
                                         src={tech.iconUrl}
                                         alt={tech.name}
-                                        className={`w-12 h-12 ${invertIcons.includes(tech.name) ? "invert" : ""}`}
+                                        width={48}
+                                        height={48}
+                                        className={`w-12 h-12 object-contain ${invertIcons.includes(tech.name) ? "invert" : ""}`}
                                     />
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-2">{tech.name}</h3>

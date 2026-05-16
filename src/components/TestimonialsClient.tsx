@@ -1,6 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
+import Image from "next/image";
 
 type Testimonial = {
     id: string;
@@ -30,11 +31,12 @@ function TestimonialCard({ t }: { t: Testimonial }) {
         <div className="relative flex-shrink-0 w-[320px] sm:w-[360px] bg-white/5 border border-white/10 rounded-2xl overflow-hidden group hover:border-white/20 transition-all duration-300">
             {/* Site screenshot banner */}
             <div className="relative h-36 w-full overflow-hidden">
-                <img
+                <Image
                     src={t.siteImage || "https://picsum.photos/seed/default/600/400"}
                     alt={t.projectName}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 360px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/20 to-transparent" />
                 {/* Project name badge */}
@@ -57,11 +59,12 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 
                 {/* Person */}
                 <div className="mt-4 flex items-center gap-3 border-t border-white/5 pt-4">
-                    <img
+                    <Image
                         src={t.personImage || "https://i.pravatar.cc/150?img=1"}
                         alt={t.personName}
-                        className="w-9 h-9 rounded-full object-cover border-2 border-white/10"
-                        loading="lazy"
+                        width={36}
+                        height={36}
+                        className="rounded-full object-cover border-2 border-white/10"
                     />
                     <div>
                         <p className="text-white font-semibold text-sm">{t.personName}</p>
