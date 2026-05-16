@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useState, useTransition } from "react";
 import { Star } from "lucide-react";
 
 type Testimonial = {

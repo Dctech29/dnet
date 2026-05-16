@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
         }
 
         return NextResponse.next();
-    } catch (error) {
+    } catch {
         // If decryption fails (e.g., token expired or tampered), clear it and redirect
         if (isAdminRoute) {
             return NextResponse.redirect(new URL("/login", request.url));

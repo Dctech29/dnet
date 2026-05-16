@@ -3,7 +3,15 @@
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
+interface Project {
+    title: string;
+    category: string;
+    imageUrl: string;
+    description: string;
+    link: string | null;
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
     return (
         <div
             className="group relative rounded-3xl overflow-hidden border border-white/10 flex flex-col bg-gray-950/80 backdrop-blur-sm
@@ -41,7 +49,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
     );
 }
 
-export default function ProjectsCarousel({ projects }: { projects: any[] }) {
+export default function ProjectsCarousel({ projects }: { projects: Project[] }) {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -79,7 +87,7 @@ export default function ProjectsCarousel({ projects }: { projects: any[] }) {
                 className="flex gap-4 overflow-x-auto px-4 sm:px-6 pb-5 snap-x snap-mandatory scroll-smooth"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
-                {projects.map((project: any, index: number) => (
+                {projects.map((project: Project, index: number) => (
                     <div key={project.title || index} className="snap-start">
                         <ProjectCard project={project} index={index} />
                     </div>
@@ -89,7 +97,7 @@ export default function ProjectsCarousel({ projects }: { projects: any[] }) {
 
             {/* Interactive dots */}
             <div className="flex justify-center gap-2 mt-3 px-6">
-                {projects.map((_: any, i: number) => (
+                {projects.map((_, i: number) => (
                     <button
                         key={i}
                         onClick={() => scrollToIndex(i)}

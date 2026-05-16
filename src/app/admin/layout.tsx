@@ -1,5 +1,4 @@
 import AdminSidebar from "@/app/admin/AdminSidebar";
-import { handleLogout } from "@/app/actions";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

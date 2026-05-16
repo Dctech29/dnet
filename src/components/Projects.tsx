@@ -2,7 +2,15 @@ import { ArrowUpRight } from "lucide-react";
 import { getProjects } from "@/app/actions";
 import ProjectsCarousel from "./ProjectsCarousel";
 
-const defaultProjects = [
+interface Project {
+    title: string;
+    category: string;
+    imageUrl: string;
+    description: string;
+    link: string | null;
+}
+
+const defaultProjects: Project[] = [
     { title: "Jyotish Platform", category: "Web Application", imageUrl: "/jyotish.png", description: "A premium Vedic Astrology platform featuring cosmic aesthetics, real-time birth charts, and expert consultations.", link: "#" },
     { title: "Medical Scheduling SaaS", category: "SaaS Product", imageUrl: "/appointment.png", description: "An ultra-modern appointment booking system for clinics with an intuitive calendar UI and seamless workflow.", link: "#" },
     { title: "Vibe E-Commerce", category: "E-Commerce", imageUrl: "/ecommerce.png", description: "High-converting online store with dynamic product grids, lightning-fast checkout, and vibrant visual design.", link: "#" },
@@ -11,7 +19,7 @@ const defaultProjects = [
     { title: "Gourmet Bites Delivery", category: "Restaurant Platform", imageUrl: "/restaurant.png", description: "A beautiful, premium food delivery website with high-quality imagery and a frictionless online ordering experience.", link: "#" },
 ];
 
-function DesktopCard({ project, index }: { project: any; index: number }) {
+function DesktopCard({ project, index }: { project: Project; index: number }) {
     return (
         <div
             className="group relative rounded-3xl overflow-hidden border border-white/10 flex flex-col bg-gray-950/80 backdrop-blur-sm hover:-translate-y-1 transition-transform duration-500"
@@ -65,9 +73,8 @@ export default async function Projects() {
             {/* Mobile: horizontal scroll carousel */}
             <ProjectsCarousel projects={displayProjects} />
 
-            {/* Desktop: 3-column grid */}
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 container mx-auto px-4 sm:px-6 max-w-7xl">
-                {displayProjects.map((project: any, index: number) => (
+                {displayProjects.map((project: Project, index: number) => (
                     <DesktopCard key={project.title || index} project={project} index={index} />
                 ))}
             </div>
