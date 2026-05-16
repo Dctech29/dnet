@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  category    String
+  description String
+  imageUrl    String
+  link        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SiteSettings {
+  id        String   @id @default("globalSettings")
+  phone     String   @default("+91 89504 96925")
+  email     String   @default("deepaksolutions29@gmail.com")
+  whatsapp  String   @default("https://wa.me/918950496925")
+  github    String   @default("https://github.com/Dctech29")
+  linkedin  String   @default("https://www.linkedin.com/in/deepak-bishnoi/")
+  address   String   @default("Mangali, Hisar 125001 Haryana, India")
+  updatedAt DateTime @updatedAt
+}
+
+model Technology {
+  id        String   @id @default(cuid())
+  name      String
+  iconUrl   String
+  order     Int      @default(0) // For sorting the tech stack
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  personName  String
+  personImage String
+  projectName String
+  siteImage   String
+  rating      Int      @default(5)
+  review      String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Page {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
